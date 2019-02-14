@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+  <meta charset="utf-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DOM</title>
+    </head>
+    <body> 
+        <div id="calendar">Calendar</div>
+        <table class="calendarClass" id="table">
+        </table>
+        <div id="list">Simbling's list </br>
+             <ol id="ol">
+                 <li>0</li>
+                 <li>1</li>
+                 <li>2</li>
+             </ol>
+        </div>
+<script>
+    // 1. Взимане на съществуващ DOM елемент от страницата.
+//    alert(window.calendar); 
+//      var getValue= document.getElementById('calendar').value;
+//    alert(window['calendar']);
+    // Промяна на id на елемента календар
+   // let calendar = 10;
+    //alert(calendar); 
+    
+    // 4.b) Промяна на съдържанието на div
+//    document.body.innerHTML = 'The new BODY!';
+//    let div = document.querySelector('div');
+
+    // 4.c) Промяна и връщане на HTML съдържание на елемента
+    //div.outerHTML = '<p>A new element!</p>'; // (*)
+    //4.c) Задаване на стил(цвят)на div елемента
+  let getColor = document.querySelector('div');
+  getColor.style.color = 'orange';
+  
+ //5.Контрол на траверсирането спрямо селектираният елемент в това число
+  ol.before('before');
+  ol.after('after');
+  // Добавя преди simbling
+  let prepend = document.createElement('li');
+  prepend.innerHTML = 'prepend';
+  ol.prepend(prepend);
+  //Добавя след simbling
+  let append = document.createElement('li');
+  append.innerHTML = 'append';
+  ol.append(append);
+   // Достъп до елемент преди sibling
+   let newLi = document.createElement('li');
+  newLi.innerHTML = 'Before!';
+ ol.insertBefore(newLi, ol.children[1]);
+
+    let table = document.querySelector('table');
+    // 2. Добавяне на несъществуващ елемент към произволен елемент, вече съществуващ на страницата
+    var getTable= document.getElementById('table');
+    var newRow = document.createElement("tr");
+   
+    // Добавяне на атрибут id към елемента 
+    newRow.setAttribute('id','tr+1');
+    // Добавяне на текстово съдържание към новия елемент
+    var newContent = document.createTextNode("five");
+        newRow.appendChild(newContent);
+        console.log(newContent);
+        
+       alert( table.getAttribute('id') ); 
+        // Добавяне на несъществуващ атрибут към елемента table
+        table.setAttribute('data', 'note'); 
+    
+        alert( table.outerHTML ); 
+
+        // Промяна на атрибутитa id на елемента table
+  table.setAttribute('id', 'id');
+  alert(table.id); 
+
+  table.id = 'newId';
+  alert(table.getAttribute('id')); // newId 
+
+        // Промяна на атрибутa class на елемента table
+  table.setAttribute('class','newClass');
+  alert(table.class);
+
+  table.class='newClass';
+  alert(table.getAttribute('class')); // newClass
+        
+      // Връща колекция от атрибутите на table
+        for (let attr of table.attributes) { 
+          alert( `${attr.name} = ${attr.value}` );
+
+        }
+
+     // 3.Изтриване на елемент & method chainning
+       var overlay = document.createElement("DIV");
+ overlay.className = "overlay";
+ document.body.appendChild(overlay);
+ var oh2 = document.createElement("H2");
+ oh2.appendChild(document.createTextNode("No events today!"));
+ overlay.appendChild(oh2);
+ var op = document.createElement("P");
+ op.appendChild(document.createTextNode("Click to close it"));
+ overlay.appendChild(op);
+ var ob = document.createElement("INPUT");
+ ob.setAttribute("type", "button");
+ ob.setAttribute("value", "Close");
+ overlay.appendChild(ob);
+ //6.
+ if (isOldIE) {
+     ob.attachEvent("onclick", function () { document.body.removeChild(overlay); });
+ }
+  else {
+      ob.addEventListener("click", function () { document.body.removeChild(overlay); }, false);
+  }
+ var isOldIE = false;
+ </script>
+
+</body>
+</html>
